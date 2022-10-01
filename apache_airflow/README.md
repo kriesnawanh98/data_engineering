@@ -48,6 +48,27 @@ example of using cron expression:
 
 <img src="image/image_1.png">
 
+example:
+start_date = datetime(2019, 10, 13, 15, 50), schedule_interval = 0 * * * * or (@hourly)
+
+**1. Case A**
+current_time is **before** start_date - 2019-10-13 00:00, 
+then your dags will schedule at 2019-10-13 16:50, and subsequently every hour.
+Please note that it will not start at start_date(2019-10-13 15:50), but rather at execution_date + schedule_interval
+
+**2. Case B **
+current_time is **after** start_date - 2019-10-14 00:00, 
+then your dags will schedule at
+2019-10-13 16:50, 2019-10-13 17:50, 2019-10-13 18:50 … and subsequently catchup till it reaches 2019-10-13 23:50
+Then it will wait for the strike of 2019-10-14 00:50 for the next run.
+Please not that the catchup can be avoided by setting catchup=False in dag properties
+
+
+
+
+
+
+
 ## 3. Example of DAG script in Airflow
 ```python
 from airflow import DAG
