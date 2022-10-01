@@ -43,7 +43,7 @@ example of using cron expression:
 - schedule_interval = interval for running the DAG, parameter accepts cron or timedelta values
 
 **formula:**
-> execution_date = start_date + schedule_interval
+> execution_date = start_date + schedule_interval \
 > next_execution_date = last_execution_date + schedule_interval
 
 <img src="image/image_1.png">
