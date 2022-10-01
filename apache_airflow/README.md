@@ -36,9 +36,11 @@ example of using cron expression:
 | 58 5 * 2 3      | At 05:58 on Wednesday in February.                        |
 | 58 5 10 2 3     | At 05:58 on day-of-month 10 and on Wednesday in February. |
 
+## 2. ```start_date``` variable explanation
 
+<img src="image/image_1.png">
 
-## 2. Example of DAG script in Airflow
+## 3. Example of DAG script in Airflow
 ```python
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -61,7 +63,7 @@ default_args = {
 with DAG(
         'DAG_name',
         description='Scheduler - description',
-        schedule_interval='0 3 * * 1', #cron expression
+        schedule_interval='0 3 * * 1', #cron expression At 03:00 on Monday.
         default_args=default_args,
         tags=['example_dag'],
         catchup=False) as dag_exp:
