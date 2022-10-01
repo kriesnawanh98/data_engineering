@@ -38,6 +38,14 @@ example of using cron expression:
 
 ## 2. ```start_date``` variable explanation
 
+- start_date = The first time that DAG is created (not the first time running the job)
+- execution_date = time for running the job/tasks
+- schedule_interval = interval for running the DAG, parameter accepts cron or timedelta values
+
+**formula:**
+> execution_date = start_date + schedule_interval
+> next_execution_date = last_execution_date + schedule_interval
+
 <img src="image/image_1.png">
 
 ## 3. Example of DAG script in Airflow
