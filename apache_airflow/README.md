@@ -10,7 +10,26 @@ The main characteristic of Airflow workflows is that all workflows are defined i
 
 - ```Flexible```: Workflow parameterization is built-in leveraging the Jinja templating engine
 
-## 1. Example of DAG script in Airflow
+## 1. Cron Expression
+A cron expression is a string consisting of six or seven subexpressions (fields) that describe individual details of the schedule. These fields, separated by white space, can contain any of the allowed values with various combinations of the allowed characters for that field.
+
+> ``` [MINUTE] [HOUR] [DAY(MONTH)] [MONTH] [DAY(WEEK)] ```
+
+| Name         | Required | Allowed Values  |
+| ------------ | -------- | --------------- |
+| Minutes      | Y        | 0-59            |
+| Hours        | Y        | 0-23            |
+| Day of month | Y        | 1-31            |
+| Month        | Y        | 0-11 or JAN-DEC |
+| Day of week  | Y        | 1-7 or SUN-SAT  |
+
+
+example:
+
+| Cron Expression | Explanation      |
+| --------------- | ---------------- |
+| * * * * *       | At every minute. |
+## 2. Example of DAG script in Airflow
 ```python
 from airflow import DAG
 from airflow.operators.bash import BashOperator
