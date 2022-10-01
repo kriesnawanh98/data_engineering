@@ -24,11 +24,20 @@ A cron expression is a string consisting of six or seven subexpressions (fields)
 | Day of week  | Y        | 1-7 or SUN-SAT  |
 
 
-example:
+example of using cron expression:
 
-| Cron Expression | Explanation      |
-| --------------- | ---------------- |
-| * * * * *       | At every minute. |
+| Cron Expression | Explanation                                               |
+| --------------- | --------------------------------------------------------- |
+| * * * * *       | At every minute.                                          |
+| 58 * * * 1      | At minute 58 on Monday.                                   |
+| 58 2 * * *      | At 02:58 everyday.                                        |
+| 0 15 10 * *     | At 15:00 on day-of-month 10.                              |
+| 58 2 5 10 *     | At 02:58 on day-of-month 5 in October.                    |
+| 58 5 * 2 3      | At 05:58 on Wednesday in February.                        |
+| 58 5 10 2 3     | At 05:58 on day-of-month 10 and on Wednesday in February. |
+
+
+
 ## 2. Example of DAG script in Airflow
 ```python
 from airflow import DAG
