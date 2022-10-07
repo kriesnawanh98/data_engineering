@@ -74,3 +74,16 @@ bq --location=asia-southeast2 cp \
 [PROJECT_NAME]:[DATASET_SOURCE].[TABLE_SOURCE] \
 [PROJECT_NAME]:[DATASET_DESTINATION].[TABLE_DESTINATION]
 ``` 
+
+## 5. Create Google Cloud Function (GCF)
+### 5.1. Determine the function name
+<img src="image/gcf_1.png">
+
+### 5.2. Choose "Allow unauthenticated Invocations" for allowing triggering tthe url from everwhere
+<img src="image/gcf_2.png">
+
+### 5.3. Choose the "runtime service account", make sure the service account can access the service (like App Engine, Cloud SQL, Compute Enginer etc)
+<img src="image/gcf_3.png">
+
+### 5.4. Create environment variables (optional)
+<img src="image/gcf_4.png">
