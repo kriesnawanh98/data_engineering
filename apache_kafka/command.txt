@@ -1,0 +1,25 @@
+Start Zoo keeper
+
+./bin/zookeeper-server-start.sh config/zookeeper.properties
+
+./bin/kafka-server-start.sh config/server.properties
+
+
+Create Topic
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 \ 
+--replication-factor 1 --partitions 1 --topic contoh-topic
+
+# localhost:9092 --> ip and port kafka
+# replication-factor --> faktor replikasi (primary and replikasi), 1 data duplikat (1)
+# partitions --> jumlah partisi 
+# topics --> topic name
+
+Cek topic
+./bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+./bin/kafka-topics.sh --describe --topic contoh-topic --bootstrap-server localhost:9092
+
+Send data to topic 
+./bin/kafka-console-producer.sh --topic contoh-topic --bootstrap-server localhost:9092
+
+Start consumer
+./bin/kafka-console-consumer.sh --topic contoh-topic --from-beginning --bootstrap-server localhost:9092

@@ -66,8 +66,9 @@ di dalam topic terdapat sejumlah partisi. 1 partisi hanya bisa di consume/subscr
 ## Kafka Installation
 
 
-
-
+```
+pip3 install kafka-python
+```
 
 
 
