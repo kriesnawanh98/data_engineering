@@ -57,9 +57,7 @@ try:
         .option("driver", driver_jdbc) \
         .load()
 
-    df_checkpoint = df.agg({
-        "modified_date": "max"
-    }).collect()[0][0]  # GANTI <==============================
+    df_checkpoint = df.agg({"modified_date": "max"}).collect()[0][0]
     df_row_count = df.count()
 
 except Exception as exception_message:
