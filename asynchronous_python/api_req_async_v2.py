@@ -22,34 +22,34 @@ symbols = [
     "TIME_SERIES_MONTHLY",
     "TIME_SERIES_MONTHLY_ADJUSTED",
     "GLOBAL_QUOTE",
-    "TIME_SERIES_DAILY",
-    "TIME_SERIES_DAILY_ADJUSTED",
-    "TIME_SERIES_WEEKLY",
-    "TIME_SERIES_WEEKLY_ADJUSTED",
-    "TIME_SERIES_MONTHLY",
-    "TIME_SERIES_MONTHLY_ADJUSTED",
-    "GLOBAL_QUOTE",
-    "TIME_SERIES_DAILY",
-    "TIME_SERIES_DAILY_ADJUSTED",
-    "TIME_SERIES_WEEKLY",
-    "TIME_SERIES_WEEKLY_ADJUSTED",
-    "TIME_SERIES_MONTHLY",
-    "TIME_SERIES_MONTHLY_ADJUSTED",
-    "GLOBAL_QUOTE",
-    "TIME_SERIES_DAILY",
-    "TIME_SERIES_DAILY_ADJUSTED",
-    "TIME_SERIES_WEEKLY",
-    "TIME_SERIES_WEEKLY_ADJUSTED",
-    "TIME_SERIES_MONTHLY",
-    "TIME_SERIES_MONTHLY_ADJUSTED",
-    "GLOBAL_QUOTE",
-    "TIME_SERIES_DAILY",
-    "TIME_SERIES_DAILY_ADJUSTED",
-    "TIME_SERIES_WEEKLY",
-    "TIME_SERIES_WEEKLY_ADJUSTED",
-    "TIME_SERIES_MONTHLY",
-    "TIME_SERIES_MONTHLY_ADJUSTED",
-    "GLOBAL_QUOTE",
+    # "TIME_SERIES_DAILY",
+    # "TIME_SERIES_DAILY_ADJUSTED",
+    # "TIME_SERIES_WEEKLY",
+    # "TIME_SERIES_WEEKLY_ADJUSTED",
+    # "TIME_SERIES_MONTHLY",
+    # "TIME_SERIES_MONTHLY_ADJUSTED",
+    # "GLOBAL_QUOTE",
+    # "TIME_SERIES_DAILY",
+    # "TIME_SERIES_DAILY_ADJUSTED",
+    # "TIME_SERIES_WEEKLY",
+    # "TIME_SERIES_WEEKLY_ADJUSTED",
+    # "TIME_SERIES_MONTHLY",
+    # "TIME_SERIES_MONTHLY_ADJUSTED",
+    # "GLOBAL_QUOTE",
+    # "TIME_SERIES_DAILY",
+    # "TIME_SERIES_DAILY_ADJUSTED",
+    # "TIME_SERIES_WEEKLY",
+    # "TIME_SERIES_WEEKLY_ADJUSTED",
+    # "TIME_SERIES_MONTHLY",
+    # "TIME_SERIES_MONTHLY_ADJUSTED",
+    # "GLOBAL_QUOTE",
+    # "TIME_SERIES_DAILY",
+    # "TIME_SERIES_DAILY_ADJUSTED",
+    # "TIME_SERIES_WEEKLY",
+    # "TIME_SERIES_WEEKLY_ADJUSTED",
+    # "TIME_SERIES_MONTHLY",
+    # "TIME_SERIES_MONTHLY_ADJUSTED",
+    # "GLOBAL_QUOTE",
 ]
 results = []
 
@@ -70,14 +70,21 @@ def get_tasks(session):
         tasks.append(
             asyncio.create_task(
                 session.get(url.format(symbol, api_key), ssl=False)))
-    print(tasks)
+    # print(tasks)
     return tasks
 
 
 async def get_symbols():
+    data_respon = []
     async with aiohttp.ClientSession() as session:
         tasks = get_tasks(session)
         responses = await asyncio.gather(*tasks)
+
+        for data in responses:
+            respon_json = await data.json()
+            data_respon.append(respon_json)
+
+        return data_respon
 
 
 print("start timer")
@@ -87,7 +94,9 @@ start = time.time()
 # loop.run_until_complete(get_symbols())
 # loop.close()
 # bisa dipersingkat hanya jadi
-asyncio.run(get_symbols())
+data_respon = asyncio.run(get_symbols())
+print(data_respon)
+print(len(data_respon))
 
 end = time.time()
 

@@ -62,3 +62,5 @@ end = time.time()
 total_time = end - start
 print("it took {} seconds to make {} api calls".format(total_time,
                                                        len(symbols)))
+
+print(results)
